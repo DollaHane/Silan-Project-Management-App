@@ -1,0 +1,38 @@
+<div class="w-full">
+
+  <button (click)="activateModal()"
+    class="bg-orange-500 w-full flex text-white h-10 items-center justify-center gap-3 p-2 rounded-full shadow-md transition duration-75 hover:scale-[0.99] ">
+    <span>Create Project</span>
+    <lucide-angular [img]="SquarePlus" class="my-icon"></lucide-angular>
+  </button>
+
+  <div *ngIf="modalOpen"
+    class="absolute items-center justify-center flex top-0 left-0 w-full h-full bg-zinc-300/20 backdrop-blur-sm z-40">
+    <div class="w-1/2 flex flex-col bg-zinc-50 rounded-xl shadow-md gap-5 p-5 z-50">
+      <div>
+        <h1 class="font-semibold text-lg">Create A New Project:</h1>
+      </div>
+      <div>
+        <form [formGroup]="projectForm" (ngSubmit)="createProject()">
+          <div class="space-y-2 mb-5 w-full">
+            <input required="required" type="text" class="w-full border border-zinc-400 p-1 rounded-lg outline-none"
+              id="title" formControlName="title" placeholder="Title" />
+            <input required="required" type="text" class="w-full border border-zinc-400 p-1 rounded-lg outline-none"
+              id="poNumber" formControlName="poNumber" placeholder="PO Number" />
+            <input required="required" type="text" class="w-full border border-zinc-400 p-1 rounded-lg outline-none"
+              id="jobNumber" formControlName="jobNumber" placeholder="Job Number" />
+            <input required="required" type="text" class="w-full border border-zinc-400 p-1 rounded-lg outline-none"
+              id="value" formControlName="value" placeholder="Project Value" />
+          </div>
+          <div class="flex flex-row gap-2">
+            <button type="submit" class="w-20 h-8 bg-zinc-800 text-zinc-50 rounded-md shadow-md">Submit</button>
+            <button (click)="activateModal()"
+              class="w-20 h-8 bg-zinc-50 text-zinc-800 rounded-md shadow-md">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div (click)="activateModal()" class="absolute top-0 left-0 w-full h-full"></div>
+  </div>
+
+</div>

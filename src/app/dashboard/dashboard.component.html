@@ -1,0 +1,18 @@
+<div *ngIf="project" class="w-full h-full p-2">
+  <div class="w-full h-10 flex flex-row items-center justify-between">
+    <div  class="flex items-center text-2xl gap-1 font-semibold">
+      <p>{{project.jobNumber}}:</p>
+      <p>{{project.title}}</p>
+    </div>
+    <app-create-tool></app-create-tool>
+  </div>
+  <div class="h-[1px] w-full bg-zinc-200 mt-4"></div>
+  <div class="flex flex-col space-y-5 mt-2">
+  @for (tool of project.tools; track tool.id) {
+    <div  class="flex bg-zinc-100 h-[53px] items-center gap-1 p-3 rounded-xl shadow-md transition duration-75 hover:scale-[0.99]">
+      <p>{{tool.toolNumber}}:</p>
+      <p class="text-sm italic">{{tool.description}}</p>
+    </div>
+  }
+  </div>
+</div>
