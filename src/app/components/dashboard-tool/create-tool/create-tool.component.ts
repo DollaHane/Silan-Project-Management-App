@@ -12,7 +12,7 @@ import { ProjectRefetchService } from '../../../services/project/project-refetch
 @Component({
   selector: 'app-create-tool',
   standalone: true,
-  imports: [LucideAngularModule, NgFor, NgIf, ReactiveFormsModule],
+  imports: [LucideAngularModule, NgIf, ReactiveFormsModule],
   templateUrl: './create-tool.component.html',
 })
 export class CreateToolComponent {

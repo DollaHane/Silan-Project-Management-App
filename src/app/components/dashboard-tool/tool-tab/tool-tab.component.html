@@ -1,0 +1,17 @@
+<div *ngIf="tool" class="gap-1 flex flex-col">
+  <div (click)="activateDropdown()" class="flex bg-zinc-100 h-[40px] items-center gap-1 p-3 border border-transparent justify-between rounded-xl shadow-md hover:cursor-pointer transition duration-75 hover:border-orange-500">
+    <div class="flex gap-2">
+      <p>{{tool.toolNumber}}:</p>
+      <p class=" line-clamp-1">{{tool.title}}</p>
+    </div>
+    <button >
+      <lucide-angular [img]="ArrowDown"  [ngClass]="{'hidden': dropdownOpen === true}"></lucide-angular>
+      <lucide-angular [img]="ArrowDown" class="rotate-180" [ngClass]="{'hidden': dropdownOpen === false}"></lucide-angular>
+    </button>
+  </div>
+  <div *ngIf="dropdownOpen" class="top-[55px] w-full p-3">
+    <h2>Tasks:</h2>
+    <hr>
+  </div>
+</div>
+  

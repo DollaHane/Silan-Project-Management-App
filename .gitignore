@@ -8,14 +8,15 @@ node_modules
 # testing
 coverage
 
-# next.js
-.next/
+# angular
+.angular/
 out/
 build
 
 # misc
 .DS_Store
 *.pem
+.tsbuildinfo
 
 # debug
 npm-debug.log*

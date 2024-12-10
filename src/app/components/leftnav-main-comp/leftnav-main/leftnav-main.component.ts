@@ -7,7 +7,7 @@ import { Project } from '../../../models/project.model';
 @Component({
   selector: 'app-leftnav-main',
   standalone: true,
-  imports: [NgFor, NgIf, CreateProjectComponent, ListProjectComponent],
+  imports: [CreateProjectComponent, ListProjectComponent],
   templateUrl: './leftnav-main.component.html',
 })
 export class LeftnavMainComponent {

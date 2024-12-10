@@ -7,7 +7,6 @@ import { BaseComponent } from './base/base.component';
   standalone: true,
   imports: [
     RouterOutlet,
-    BaseComponent,
   ],
   templateUrl: './app.component.html',
 })

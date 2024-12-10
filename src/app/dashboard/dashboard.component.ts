@@ -5,11 +5,12 @@ import { ProjectService } from '../services/project/project.service';
 import { CommonModule, NgFor } from '@angular/common';
 import { CreateToolComponent } from '../components/dashboard-tool/create-tool/create-tool.component';
 import { ProjectRefetchService } from '../services/project/project-refetch.service';
+import { ToolTabComponent } from '../components/dashboard-tool/tool-tab/tool-tab.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, NgFor, CreateToolComponent],
+  imports: [CommonModule, CreateToolComponent, ToolTabComponent],
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnInit {
