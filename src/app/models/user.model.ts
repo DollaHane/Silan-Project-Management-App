@@ -1,7 +1,10 @@
 export interface User {
   id: string
-  firstName: string
-  lastName: string
-  age: number
-  occupation: string
+  name: string;
+  email: string;
+  emailVerified: string;
+  password: string;
+  isAdmin: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }
