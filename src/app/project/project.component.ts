@@ -8,12 +8,12 @@ import { ProjectRefetchService } from '../services/project/project-refetch.servi
 import { ToolTabComponent } from '../components/dashboard-tool/tool-tab/tool-tab.component';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-project',
   standalone: true,
   imports: [CommonModule, CreateToolComponent, ToolTabComponent],
-  templateUrl: './dashboard.component.html',
+  templateUrl: './project.component.html',
 })
-export class DashboardComponent implements OnInit {
+export class ProjectComponent implements OnInit { 
   projectId!: string;
   project: any | undefined;
   private projectRefetchSubscription!: Subscription;

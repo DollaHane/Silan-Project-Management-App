@@ -5,6 +5,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideZoneChangeDetection } from '@angular/core';
+import { httpInterceptorProviders } from './helpers/http-interceptor/http-request-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,5 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideHttpClient(withFetch()),
     provideZoneChangeDetection({ eventCoalescing: true }),
+    httpInterceptorProviders,
   ],
 };

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { BaseComponent } from './base/base.component';
+
 
 @Component({
   selector: 'app-root',
@@ -13,4 +13,9 @@ import { BaseComponent } from './base/base.component';
 
 export class AppComponent {
   title = 'my-app';
+
+  public checkLogin() {
+    
+  }
+
 }

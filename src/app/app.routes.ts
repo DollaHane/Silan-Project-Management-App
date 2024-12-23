@@ -2,17 +2,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseComponent } from './base/base.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProjectComponent } from './project/project.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 export const routes: Routes = [
   {
-    path: '',
-    component: BaseComponent,
+    path: 'home', component: BaseComponent,
     children: [
-      { path: '', redirectTo: '', pathMatch: 'full' },
-      { path: 'dashboard/:id', component: DashboardComponent },
+      { path: 'project/:id', component: ProjectComponent },
     ]
-  }
+  },
+  {path: 'auth/signin', component: SigninComponent},
 ];
 
 @NgModule({

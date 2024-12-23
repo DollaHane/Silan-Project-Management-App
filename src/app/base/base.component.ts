@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NgFor } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { LeftnavMainComponent } from '../components/leftnav-main-comp/leftnav-main/leftnav-main.component';
@@ -10,9 +9,7 @@ import { LeftnavMainComponent } from '../components/leftnav-main-comp/leftnav-ma
   standalone: true,
   imports: [
     RouterOutlet,
-    NgFor,
     ReactiveFormsModule,
-    BaseComponent,
     NavbarComponent,
     LeftnavMainComponent,
   ],
@@ -20,5 +17,8 @@ import { LeftnavMainComponent } from '../components/leftnav-main-comp/leftnav-ma
   styleUrl: './base.component.css'
 })
 export class BaseComponent {
-
+  ngOnInit() {
+    const session = sessionStorage.getItem("session")
+    console.log('session:', session)
+  }
 }
