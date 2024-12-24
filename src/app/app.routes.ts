@@ -7,7 +7,7 @@ import { SigninComponent } from './auth/signin/signin.component';
 
 export const routes: Routes = [
   {
-    path: 'home', component: BaseComponent,
+    path: '', component: BaseComponent,
     children: [
       { path: 'project/:id', component: ProjectComponent },
     ]

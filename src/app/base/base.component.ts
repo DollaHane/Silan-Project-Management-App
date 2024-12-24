@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { LeftnavMainComponent } from '../components/leftnav-main-comp/leftnav-main/leftnav-main.component';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-base',
@@ -17,8 +18,10 @@ import { LeftnavMainComponent } from '../components/leftnav-main-comp/leftnav-ma
   styleUrl: './base.component.css'
 })
 export class BaseComponent {
+
+  constructor(private authService: AuthService){}
+
   ngOnInit() {
-    const session = sessionStorage.getItem("session")
-    console.log('session:', session)
+    this.authService.CheckSessionStatus()
   }
 }

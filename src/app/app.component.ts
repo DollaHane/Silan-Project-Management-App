@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { Session } from './models/session.model';
+import { formatDate } from '@angular/common';
 
 
 @Component({
@@ -14,8 +16,8 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent {
   title = 'my-app';
 
-  public checkLogin() {
-    
-  }
+  constructor() {}
+
+  ngOnInit() {}
 
 }
