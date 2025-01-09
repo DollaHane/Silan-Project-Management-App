@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { Session } from './models/session.model';
-import { formatDate } from '@angular/common';
+import { AuthService } from './services/auth/auth.service';
 
 
 @Component({
@@ -16,8 +15,8 @@ import { formatDate } from '@angular/common';
 export class AppComponent {
   title = 'my-app';
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {this.authService.CheckSessionStatus}
 
 }

@@ -22,6 +22,5 @@ export class BaseComponent {
   constructor(private authService: AuthService){}
 
   ngOnInit() {
-    this.authService.CheckSessionStatus()
   }
 }

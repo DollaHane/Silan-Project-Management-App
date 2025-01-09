@@ -15,9 +15,9 @@ export class LeftnavMainComponent {
   @ViewChild(ListProjectComponent) listProjectComponent!: ListProjectComponent;
 
   onProjectCreated(project: Project) {
-    if (this.listProjectComponent) {
-      this.listProjectComponent.getProjectList(); 
-    }
+    // if (this.listProjectComponent) {
+    //   this.listProjectComponent.getProjectList(); 
+    // }
   }
 
 }

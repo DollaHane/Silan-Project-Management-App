@@ -20,21 +20,21 @@ export class ListProjectComponent implements OnInit, OnDestroy {
     private projectService: ProjectService,
     private projectRefetchService: ProjectRefetchService
   ) {
-    this.getProjectList();
+    // this.getProjectList();
   }
 
   ngOnInit(): void {
-    this.projectRefetchSubscription =
-      this.projectRefetchService.refetch$.subscribe(() => {
-        this.getProjectList();
-      });
+    // this.projectRefetchSubscription =
+    //   this.projectRefetchService.refetch$.subscribe(() => {
+    //     this.getProjectList();
+    //   });
   }
 
-  public getProjectList() {
-    return this.projectService.getProjects().subscribe((projects) => {
-      this.projectData.set(projects)
-    })
-  }
+  // public getProjectList() {
+  //   return this.projectService.getProjects().subscribe((projects) => {
+  //     this.projectData.set(projects)
+  //   })
+  // }
 
   ngOnDestroy(): void {
     if (this.projectRefetchSubscription) {

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../services/user/user.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signin',
@@ -38,7 +37,7 @@ export class SigninComponent {
       return;
     }
 
-    this.authService.login(loginCredentials).subscribe({
+    this.authService.signin(loginCredentials).subscribe({
       next: (response) => {
         console.log('response:', response)
         this.signinForm.reset()
