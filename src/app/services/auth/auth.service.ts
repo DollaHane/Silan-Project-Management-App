@@ -1,5 +1,11 @@
 import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
-import { HttpClient, HttpErrorResponse, HttpEventType, HttpHeaders, HttpResponse } from "@angular/common/http";
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpEventType,
+  HttpHeaders,
+  HttpResponse,
+} from "@angular/common/http";
 import { Session } from "../../models/session.model";
 import { LoginCredentials } from "../../models/login.model";
 import { catchError, map, Observable, throwError } from "rxjs";
@@ -11,7 +17,11 @@ import { isPlatformBrowser } from "@angular/common";
   providedIn: "root",
 })
 export class AuthService {
-  constructor(private httpClient: HttpClient, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   api = "http://localhost:8080";
 
@@ -35,6 +45,7 @@ export class AuthService {
               token: sessionToken,
               expiration: loginResponse.expiration,
             };
+            console.log("Login Session:", session);
             sessionStorage.setItem("session", JSON.stringify(session));
             this.router.navigate([""]);
             return "Signin successful";
@@ -43,11 +54,20 @@ export class AuthService {
           }
         }),
         catchError((error: HttpErrorResponse) => {
-          console.error("Error signing in:", error)
+          console.error("Error signing in:", error);
           if (error.error instanceof ErrorEvent) {
-            return throwError(() => {new Error("Error signing in")})
+            return throwError(() => {
+              new Error("Error signing in");
+            });
           } else {
-            return throwError(() => {new Error("Internal server error" + error.status + "Error message:" + error.message)})
+            return throwError(() => {
+              new Error(
+                "Internal server error" +
+                  error.status +
+                  "Error message:" +
+                  error.message
+              );
+            });
           }
         })
       );
@@ -55,11 +75,10 @@ export class AuthService {
 
   // SIGNOUT -> DELETE SESSION
   public Signout() {
-    const session: Session | null = this.GetSession()
-
+    const session: Session | null = this.GetSession();
 
     if (session !== null) {
-      this.DeleteSessionData()
+      this.DeleteSessionData();
     }
   }
 
@@ -74,45 +93,62 @@ export class AuthService {
         return null;
       }
     } else {
-      return null
+      return null;
     }
   }
 
   // DELETE SESSION
-  public DeleteSessionData(): Observable<string> {
-    const headers: HttpHeaders = new HttpHeaders();
+  public DeleteSessionData(){
+    let headers: HttpHeaders = new HttpHeaders();
     const session: Session | null = this.GetSession();
+    console.log("Delete Session: Get session", session);
 
-    console.log('session in delete session service', session)
-
-    if (session !== null) {
-      headers.append("auth-token", session.token);
-      headers.append("auth-sessionId", session.id);
+    if (session) {
+      console.log("Delete Session: Setting headers");
+      headers = headers.append("Auth-token", session.token);
+      headers = headers.append("Auth-sessionId", session.id);
+      headers = headers.append("Access-Control-Allow-Origin", "*");
     }
 
+    console.log("Delete Session: Get headers", {
+      "Auth-token": headers.get("Auth-token"),
+      "Auth-sessionId": headers.get("Auth-sessionId"),
+      "Access-Control-Allow-Origin": headers.get("Access-Control-Allow-Origin")
+    });
+
     return this.httpClient
-      .delete(`${this.api}/auth-rm-session`, {
+      .delete(`${this.api}/api/auth-rm-session`, {
         observe: "response",
         headers: headers,
       })
-      .pipe(
-        map((response: HttpResponse<any>) => {
-          console.log('delete session res', response)
-          window.sessionStorage.clear();
-          this.router.navigate(["auth/signin"]);
+      .subscribe({
+        next: (response: HttpResponse<any>) => {
+          console.log("delete session res", response);
+          sessionStorage.clear()
+          this.router.navigate(["auth/signin"])
           return `Session deleted successfully, clearing client session state:, ${response}`;
-        }),
-        catchError((error: HttpErrorResponse) => {
-          console.error("Failed to delete session, clearing client session state:", error);
-          window.sessionStorage.clear();
-          this.router.navigate(["auth/signin"]);
+        },
+        error: (error) => {
+          console.error(
+            "Failed to delete session:",
+            error.message
+          );
           if (error.error instanceof ErrorEvent) {
-            return throwError(() => {new Error("Error deleting session")})
+            return throwError(() => {
+              new Error("Error deleting session");
+            });
           } else {
-            return throwError(() => {new Error("Internal server error" + error.status + "Error message:" + error.message)})
+            return throwError(() => {
+              new Error(
+                "Internal server error" +
+                  error.status +
+                  "Error message:" +
+                  error.message
+              );
+            });
           }
-        })
-      )
+        },
+      });
   }
 
   // CHECK SESSION
@@ -125,13 +161,13 @@ export class AuthService {
 
       if (checkDate < 0) {
         console.log("Check Session: Session expired, please login");
-        this.DeleteSessionData().subscribe()
+        this.DeleteSessionData();
       } else {
-        console.log('Check Session: Session is valid: ', session)
+        console.log("Check Session: Session is valid: ", session);
       }
     } else {
-      console.log('Check Session: Session not found')
-      this.DeleteSessionData().subscribe()
+      console.log("Check Session: Session not found");
+      this.DeleteSessionData();
     }
   }
 }
